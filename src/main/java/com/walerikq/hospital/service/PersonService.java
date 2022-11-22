@@ -2,11 +2,8 @@ package com.walerikq.hospital.service;
 
 import com.walerikq.hospital.entity.Patient;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -18,23 +15,6 @@ public class PersonService {
     private List<Patient> patients;
 
 
-
-
-    public void changeNamePerson(Patient patient, String name) {
-        patient.setName(name);
-    }
-
-    public void changeSurnamePerson(Patient patient, String surname) {
-        patient.setName(surname);
-    }
-
-    public void changePatronymicPerson(Patient patient, String patronymic) {
-        patient.setPatronymic(patronymic);
-    }
-
-    public void changeAgePerson(Patient patient, short age) {
-        patient.setAge(age);
-    }
 
     /**
      * Создание карточки(объекта) нового пациента
@@ -55,6 +35,44 @@ public class PersonService {
         patients.add(patient);
 
     }
+
+    /**
+     * Изменение имени клиента
+     * @param patient
+     * @param name
+     */
+    public void changeNamePerson(@NotNull Patient patient, String name) {
+        patient.setName(name);
+    }
+
+    /**
+     * Изменение фамилии пациента
+     * @param patient
+     * @param surname
+     */
+    public void changeSurnamePerson(Patient patient, String surname) {
+        patient.setName(surname);
+    }
+
+    /**
+     * Изменение отчества клиента
+     * @param patient
+     * @param patronymic
+     */
+    public void changePatronymicPerson(Patient patient, String patronymic) {
+        patient.setPatronymic(patronymic);
+    }
+
+    /**
+     * Изменение возраста клиента
+     * @param patient
+     * @param age
+     */
+    public void changeAgePerson(Patient patient, short age) {
+        patient.setAge(age);
+    }
+
+
 
     /**
      * Возвращает одного пациента из общего списка больных по ID
