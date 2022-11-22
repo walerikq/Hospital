@@ -43,12 +43,15 @@ public class PersonService {
      * @param age
      * @param diseases
      */
-    public void createPatient(String name, short age, String diseases) {
+    public void createPatient(String name,String surname,String patronymic, short age, String diseases,PatientsStatus status) {
         Patient patient = new Patient();
         patient.setId(ID_COUNTER++);
         patient.setName(name);
+        patient.setSurname(surname);
+        patient.setPatronymic(patronymic);
         patient.setAge(age);
         patient.setDiseases(diseases);
+        patient.setStatus(status);
         patients.add(patient);
 
     }
