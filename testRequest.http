@@ -1,0 +1,16 @@
+GET http://localhost:8080/hospital/get-person
+
+###
+GET http://localhost:8080/hospital
+
+###
+POST http://localhost:8080/hospital/create-new-patient?name=sergey&surname=pupirkin&patronymic=katorjkin&age=25&diseases=chills&status=REGISTRATION
+
+###
+GET http://localhost:8080/hospital/get-patients-with-status
+
+###
+PUT http://localhost:8080/hospital/put-info
+
+###
+DELETE http://localhost:8080/hospital/delete-person
