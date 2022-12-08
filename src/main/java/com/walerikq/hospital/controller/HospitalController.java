@@ -1,14 +1,12 @@
 package com.walerikq.hospital.controller;
 
-import com.walerikq.hospital.PersonDto.PersonDto;
+import com.walerikq.hospital.PersonDto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
 import com.walerikq.hospital.repository.PatientRepo;
-import com.walerikq.hospital.service.PatientsStatus;
 import com.walerikq.hospital.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Scanner;
 
 @AllArgsConstructor
 @RestController
@@ -23,14 +21,14 @@ public class HospitalController {
     }
 
     @GetMapping("/get-patient-from-id")
-    public Patient getPatientFromId(int id){
+    public Patient getPatientById(int id){
        Patient patient = patientRepo.getIdPatient(id);
         return patient;
     }
 
     @PostMapping("/create-new-patient")
-    public void createNewPatient(String name,String surname,String patronymic, short age, String diseases,PatientsStatus status){
-        personService.createPatient(name,surname,patronymic,age,diseases,status);
+    public void createNewPatient(PatientDto personDto){
+        personService.createPatient(personDto);
     }
 
     @GetMapping("/get-patients-with-status")
@@ -39,11 +37,9 @@ public class HospitalController {
     }
 
     @PutMapping("/put-info")
-    public void changeInformation(Patient patient,
-                                  String name,String surname,String patronymic,
-                                  short age, String diseases,PatientsStatus status){
+    public void changeInformation(PatientDto personDto){
 
-        personService.changingPatientData(patient,name,surname,patronymic,age,diseases,status);
+        personService.changingPatientData(personDto);
 
     }
 

@@ -1,5 +1,6 @@
 package com.walerikq.hospital.service;
 
+import com.walerikq.hospital.PersonDto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
 import com.walerikq.hospital.repository.PatientRepo;
 import lombok.AllArgsConstructor;
@@ -21,29 +22,27 @@ public class PersonService {
 
 
     /**
-     * Создание карточки(объекта) нового пациента
-     *
-     * @param name
-     * @param age
-     * @param diseases
+     * Создание новой карточки клиента
+     * @param personDto
      */
-    public void createPatient(String name,String surname,String patronymic, short age, String diseases,PatientsStatus status) {
+    public void createPatient(PatientDto personDto) {
         Patient patient = new Patient();
         patient.setId(idCounter++);
-        patient.setName(name);
-        patient.setSurname(surname);
-        patient.setPatronymic(patronymic);
-        patient.setAge(age);
-        patient.setDiseases(diseases);
-        patient.setStatus(status);
+        patient.setName(personDto.getName());
+        patient.setSurname(personDto.getSurname());
+        patient.setPatronymic(personDto.getPatronymic());
+        patient.setAge(personDto.getAge());
+        patient.setDiseases(personDto.getDiseases());
+        patient.setStatus(personDto.getStatus());
         patientRepo.getPatientList().add(patient);
 
     }
 
 
-    public void changingPatientData(Patient patient,
-                                    String name,String surname,String patronymic,
-                                    short age, String diseases,PatientsStatus status){
+    public void changingPatientData(PatientDto patientDto){
+        Patient patient = new Patient(patientDto.getId(), patientDto.getName(),
+                patientDto.getSurname(), patientDto.getPatronymic(),
+                patientDto.getAge(), patientDto.getDiseases(), patientDto.getStatus());
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите данные которые необходимо изменить: ");
         while (scanner.hasNextInt()) {
@@ -60,50 +59,50 @@ public class PersonService {
                 break;
             }
             if (choise == 1){
-                if (name == null){
+                if (patient.getName() == null){
                     break;
                 }
-                setNamePerson(patient,name);
+                setNamePerson(patient,patientDto.getName());
                 patientRepo.getPatientList().set(patient.getId(),patient);
 
             }
 
             if(choise == 2){
-                if (surname == null){
+                if (patient.getSurname() == null){
                     break;
                 }
-                setSurnamePerson(patient,surname);
+                setSurnamePerson(patient,patient.getSurname());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
 
             if (choise == 3){
-                if (patronymic == null){
+                if (patient.getPatronymic() == null){
                     break;
                 }
-                setPatronymicPerson(patient,patronymic);
+                setPatronymicPerson(patient,patient.getPatronymic());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
 
             if (choise == 4){
-                if (patronymic == null){
+                if (patient.getAge() == 0){
                     break;
                 }
-                setAgePerson(patient,age);
+                setAgePerson(patient,patientDto.getAge());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
             if (choise == 5){
-                if (status == null){
+                if (patient.getStatus() == null){
                     break;
                 }
-                patient.setStatus(status);
+                patient.setStatus(patient.getStatus());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
 
             if(choise == 6){
-                if (diseases == null){
+                if (patientDto.getDiseases() == null){
                     break;
                 }
-                patient.setDiseases(diseases);
+                patient.setDiseases(patientDto.getDiseases());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
         }
