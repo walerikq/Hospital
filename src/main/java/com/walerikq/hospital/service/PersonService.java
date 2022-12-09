@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@AllArgsConstructor
-@NoArgsConstructor /* если закоментить конструктор без параметров, то он ругается на параметр idCounter и тогда spring вообще не запускается */
-@Service
-public class PersonService {
+@AllArgsConstructor          //TODO Если используешь конструктор со всеми аргументами - спринг будет искать бины всех классов которые есть в параметрах
+@NoArgsConstructor           //TODO Когда комментишь этот - спринг ищет бин инта, которого нет и падает. Когда юзаешь такие служебные параметры надо использовать RequiredArgConstructor
+@Service                     //TODO И ставить модификатор final на то, что тебе нужно как бин
+public class PersonService { //TODO А еще в таком случае хорошим тоном будет явно присвоить при старте значение переменной: private int idCounter = 0;
 
     private PatientRepo patientRepo;
-    private int idCounter;
+    private int idCounter; //TODO 10.12 это я бы лучше перенес в репозиторий. Пусть бы там и хранилась эта логика идентификаторов
 
 
     /**
@@ -44,14 +44,14 @@ public class PersonService {
                 patientDto.getSurname(), patientDto.getPatronymic(),
                 patientDto.getAge(), patientDto.getDiseases(),patientDto.getStatus());
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите данные которые необходимо изменить: ");
-        while (scanner.hasNextInt()) {
-            System.out.println(
-                    "1 - Name" +
-                    "2 - Surname" +
-                    "3 - Patronymic" +
-                    "4 - Age" +
-                    "5 - Status" +
+        System.out.println("Выберите данные которые необходимо изменить: "); //TODO это не сработает. Ты печатаешь в консоль и ждешь ввода из консоли
+        while (scanner.hasNextInt()) {                                       //TODO А фронт у тебя так не умеет. Он тебе закинул что то и ждет ответа
+            System.out.println(                                              //TODO Ты не занимаешься общением с пользователем, UI живет только на фронте
+                    "1 - Name" +                                             //TODO Бэк работает в формате - пришел запрос, мы его внутри обработали, выплюнули обратно ответ
+                    "2 - Surname" +                                          //TODO Здесь твоя задача обработать введенные данные и обновить только те которые пришли
+                    "3 - Patronymic" +                                       //TODO Есть два пути - перезатирать в любом случае что бы ни пришло (и это норм)
+                    "4 - Age" +                                              //TODO Перезатирать только то что пришло (и это тоже норм)
+                    "5 - Status" +                                           //TODO Или добавить параметр-флаг который будет указывать - обновлять полностью или только то что заполнено
                     "6 - Diseases" +
                     "0 - Exit");
             int choise = scanner.nextInt();
@@ -102,6 +102,7 @@ public class PersonService {
                 if (patientDto.getDiseases() == null){
                     break;
                 }
+
                 patient.setDiseases(patientDto.getDiseases());
                 patientRepo.getPatientList().set(patient.getId(),patient);
             }
@@ -146,16 +147,16 @@ public class PersonService {
 
     //получение всех пациентов с определенным статусом
 
-    public List<Patient> getPatientsWithStatus(List<Patient> patients){
-        PatientsStatus status = null; ;
-        System.out.println("Выберите номер необходимого статуса: \n"
+    public List<Patient> getPatientsWithStatus(List<Patient> patients){ //TODO тут какие то странные дела))
+        PatientsStatus status = null; ;                                 //TODO По хорошему тебе надо передавать в метод статус (прям с фронта текстом один из PatientsStatus)
+        System.out.println("Выберите номер необходимого статуса: \n"    //TODO обращаться с ним в репозиторий, и внутри репозитория реализовать метод поиска по статусу
                 + "1 - REGISTRATION\n"
                 + "2 - APPOINTMENT\n"
                 + "3 - TREATMENT\n"
                 + "4 - RESUSCITATION\n"
                 + "5 - DISCHARGED");
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);                       //TODO это тут не сработает точно, из консоли тут читать некому и писать туда тоже некому
         byte choise = scanner.nextByte();
         boolean flag = true;
         while (flag){
@@ -184,8 +185,8 @@ public class PersonService {
                     System.out.println("Данного статуса не сущестует");
             }
         }
-        List<Patient> patientsListWithStatus = new ArrayList<>();
-        for (Patient patientWithStatus:
+        List<Patient> patientsListWithStatus = new ArrayList<>();           //TODO эту логику лучше вынести в репозиторий
+        for (Patient patientWithStatus:                                     //TODO проще всего сделать через стрим: stream().filter().collect()
              patients) {
             if (patientWithStatus.getStatus() == status){
                 patientsListWithStatus.add(patientWithStatus);

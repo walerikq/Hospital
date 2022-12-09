@@ -3,7 +3,7 @@ GET http://localhost:8080/hospital/get-person
 ###
 GET http://localhost:8080/hospital
 
-### я не понимаю, почему он выбрасывает NullPointerException в patientRepo и почему говорит, что
+### NPE потому что лист в репозитории не создан. Явно объяви его и этот метод должен норм работать
 POST http://localhost:8080/hospital/create-new-patient
 Accept: application/json
 Content-Type: application/json
