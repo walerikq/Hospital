@@ -1,13 +1,19 @@
 package com.walerikq.hospital.repository;
 
+import com.walerikq.hospital.PersonDto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+//@NoArgsConstructor
 @Repository
 public class PatientRepo {
     /**
@@ -56,6 +62,10 @@ public class PatientRepo {
                 patientList.remove(i);
             }
         }
+    }
+
+    public void addListPatients(Patient patient){
+        patientList.add(patient);
     }
 
 }

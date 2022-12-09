@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Data
 public class Patient {
     private int id;

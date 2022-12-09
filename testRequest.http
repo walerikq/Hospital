@@ -3,9 +3,20 @@ GET http://localhost:8080/hospital/get-person
 ###
 GET http://localhost:8080/hospital
 
-###
-POST http://localhost:8080/hospital/create-new-patient?name=sergey&surname=pupirkin&patronymic=katorjkin&age=25&diseases=chills&status=REGISTRATION
+### я не понимаю, почему он выбрасывает NullPointerException в patientRepo и почему говорит, что
+POST http://localhost:8080/hospital/create-new-patient
+Accept: application/json
+Content-Type: application/json
 
+{
+  "id": 0,
+  "name": "Sergey",
+  "surname": "Pupkin",
+  "patronymic": "Torreto",
+  "age": 65,
+  "diseases": "chills",
+  "status": "REGISTRATION"
+}
 ###
 GET http://localhost:8080/hospital/get-patients-with-status
 

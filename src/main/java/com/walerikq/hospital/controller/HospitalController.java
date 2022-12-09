@@ -27,7 +27,7 @@ public class HospitalController {
     }
 
     @PostMapping("/create-new-patient")
-    public void createNewPatient(PatientDto personDto){
+    public void createNewPatient(@RequestBody PatientDto personDto){
         personService.createPatient(personDto);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor /* если закоментить конструктор без параметров, то он ругается на параметр idCounter и тогда spring вообще не запускается */
 @Service
 public class PersonService {
 
@@ -34,7 +34,7 @@ public class PersonService {
         patient.setAge(personDto.getAge());
         patient.setDiseases(personDto.getDiseases());
         patient.setStatus(personDto.getStatus());
-        patientRepo.getPatientList().add(patient);
+        patientRepo.addListPatients(patient);
 
     }
 
@@ -42,7 +42,7 @@ public class PersonService {
     public void changingPatientData(PatientDto patientDto){
         Patient patient = new Patient(patientDto.getId(), patientDto.getName(),
                 patientDto.getSurname(), patientDto.getPatronymic(),
-                patientDto.getAge(), patientDto.getDiseases(), patientDto.getStatus());
+                patientDto.getAge(), patientDto.getDiseases(),patientDto.getStatus());
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите данные которые необходимо изменить: ");
         while (scanner.hasNextInt()) {
