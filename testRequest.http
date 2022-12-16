@@ -1,4 +1,4 @@
-GET http://localhost:8080/hospital/get-person
+GET http://localhost:8080/hospital/get-patient-from-id?id=0
 
 ###
 GET http://localhost:8080/hospital
@@ -22,6 +22,29 @@ GET http://localhost:8080/hospital/get-patients-with-status
 
 ###
 PUT http://localhost:8080/hospital/put-info
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Lolster",
+  "surname": "lolkin",
+  "patronymic": "Torreto",
+  "age": 35,
+  "status": "REGISTRATION"
+}
 
 ###
 DELETE http://localhost:8080/hospital/delete-person
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Sergey",
+  "surname": "Pupkin",
+  "patronymic": "Torreto",
+  "age": 65,
+  "diseases": "chills",
+  "status": "REGISTRATION"
+}

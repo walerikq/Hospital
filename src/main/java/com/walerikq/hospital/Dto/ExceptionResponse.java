@@ -1,4 +1,4 @@
-package com.walerikq.hospital.PersonDto;
+package com.walerikq.hospital.Dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

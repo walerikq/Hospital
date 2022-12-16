@@ -1,6 +1,6 @@
 package com.walerikq.hospital.controller;
 
-import com.walerikq.hospital.PersonDto.ExceptionResponse;
+import com.walerikq.hospital.Dto.ExceptionResponse;
 //import jakarta.validation.ConstraintViolationException;
 //import lombok.extern.slf4j.Slf4j;
 import lombok.extern.slf4j.Slf4j;
