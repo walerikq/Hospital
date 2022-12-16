@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +19,7 @@ public class PatientRepo {
      * должна быть логика хранения и работы с данными
      */
 
-    private List<Patient> patientList = new ArrayList<>();
+    private Map<Integer,Patient> patientList = new HashMap<>();
     private int  idPatients = 0;
 
     /**
@@ -39,21 +37,14 @@ public class PatientRepo {
      * @return
      */
     public Patient getPatientById(int id) {
-        for (Patient patient:
-             patientList) {
-            if (patient.getId() == id){
-                return patient;
-            }
-        }
-            return null;
+        return patientList.get(id);
     }
 
-    public List<Patient> getPatientsWithStatus(@NotNull PatientsStatus patientsStatus) {
-        List<Patient> patientsListWithStatus = new ArrayList<>();
-        for (Patient patientWithStatus :
-                patientList) {
-            if (patientWithStatus.getStatus() == patientsStatus) {
-                patientsListWithStatus.add(patientWithStatus);
+    public Map<Integer, Patient> getPatientsWithStatus(@NotNull PatientsStatus patientsStatus) {
+        Map<Integer,Patient> patientsListWithStatus = new HashMap<>();
+        for (int i = 0; i < patientList.size();i++) {
+            if (patientList.get(i).getStatus() == patientsStatus) {
+                patientsListWithStatus.put(i,patientList.get(i));
             }
         }
         return patientsListWithStatus;
@@ -64,7 +55,7 @@ public class PatientRepo {
      *
      * @return List
      */
-    public List<Patient> getAllPatients() {
+    public Map<Integer, Patient> getAllPatients() {
         return patientList;
     }
 
@@ -74,17 +65,11 @@ public class PatientRepo {
      * @param id
      */
     public void deletingPatientById(int id) {
-        for (int i = 0; i < patientList.size(); i++) {
-            if (patientList.get(i).getId() == id) {
-                patientList.remove(i);
-                break;
-            }
-        }
+            patientList.remove(id);
     }
 
     public void addPatientInList(Patient patient) {
-        patientList.add(patient);
-
+        patientList.put(patient.getId(), patient);
     }
 
     /**

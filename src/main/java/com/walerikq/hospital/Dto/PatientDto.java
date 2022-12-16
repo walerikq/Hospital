@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.validation.constraints.NotBlank;
 
-//TODO 10.12 пакет называется не очень удачно. лучше назвать его просто dto
 
 @Data
 @AllArgsConstructor

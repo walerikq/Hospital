@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -19,7 +19,7 @@ public class PatientService {
         return patientRepo.getPatientById(id);
     }
 
-    public List<Patient> getAllPatients() {
+    public Map<Integer, Patient> getAllPatients() {
         return patientRepo.getAllPatients();
     }
 
@@ -38,6 +38,7 @@ public class PatientService {
                 personDto.getStatus()
         );
         patientRepo.addPatientInList(patient);
+
 
     }
 
@@ -74,7 +75,7 @@ public class PatientService {
      * @param patientsStatus
      * @return
      */
-   public List<Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
+   public Map<Integer, Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
         return patientRepo.getPatientsWithStatus(patientsStatus);
    }
 
