@@ -2,8 +2,7 @@ package com.walerikq.hospital.service;
 
 import com.walerikq.hospital.Dto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
-import com.walerikq.hospital.repository.PatientRepo;
-import lombok.AllArgsConstructor;
+import com.walerikq.hospital.repository.PatientMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +12,14 @@ import java.util.Map;
 @Service
 public class PatientService {
 
-    private final PatientRepo patientRepo;
+    private final PatientMap patientMap;
 
     public Patient getPatientById(int id){
-        return patientRepo.getPatientById(id);
+        return patientMap.getPatientById(id);
     }
 
     public Map<Integer, Patient> getAllPatients() {
-        return patientRepo.getAllPatients();
+        return patientMap.getAllPatients();
     }
 
     /**
@@ -29,7 +28,7 @@ public class PatientService {
      */
     public void createPatient(PatientDto personDto) {
         Patient patient = new Patient(
-                patientRepo.setCounter(),
+                patientMap.setCounter(),
                 personDto.getName(),
                 personDto.getSurname(),
                 personDto.getPatronymic(),
@@ -37,37 +36,39 @@ public class PatientService {
                 personDto.getDiseases(),
                 personDto.getStatus()
         );
-        patientRepo.addPatientInList(patient);
+        patientMap.addPatientInList(patient);
 
 
     }
 
 
     public void changingPatientData(PatientDto patientDto){
-        Patient patient = patientRepo.getPatientById(patientDto.getId());
-        if (patientDto.getName() != null){
-            patientRepo.setNamePerson(patientDto.getId(),patientDto.getName());
+        Patient patient = patientMap.getPatientById(patientDto.getId());
+        if (patient.getName() != null){
+            patient.setName(patientDto.getName());
         }
-        if (patientDto.getSurname() != null){
-            patientRepo.setSurnamePerson(patientDto.getId(),patientDto.getSurname());
+        if (patient.getSurname() != null){
+            patient.setSurname(patientDto.getSurname());
         }
-        if (patientDto.getPatronymic() != null){
-            patientRepo.setPatronymicPerson(patientDto.getId(),patientDto.getPatronymic());
+        if (patient.getPatronymic() != null){
+            patient.setPatronymic(patientDto.getPatronymic());
         }
-        if (patientDto.getAge() > 0){
-            patientRepo.setAgePerson(patientDto.getId(), patientDto.getAge());
+        if (patient.getAge() > 0){
+            patient.setAge(patientDto.getAge());
         }
-        if (patientDto.getDiseases() != null){
-            patientRepo.setDiseases(patientDto.getId(), patientDto.getDiseases());
+        if (patient.getDiseases() != null){
+            patient.setDiseases(patientDto.getDiseases());
         }
-        if (patientDto.getStatus() != null){
-            patientRepo.setStatus(patientDto.getId(), patientDto.getStatus());
+        if (patient.getStatus() != null){
+            patient.setStatus(patientDto.getStatus());
         }
+
+        patientMap.savePatient(patient);
 
     }
 
     public void deletingPatientById(int id){
-        patientRepo.deletingPatientById(id);
+        patientMap.deletingPatientById(id);
     }
 
     /**
@@ -76,7 +77,7 @@ public class PatientService {
      * @return
      */
    public Map<Integer, Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
-        return patientRepo.getPatientsWithStatus(patientsStatus);
+        return patientMap.getPatientsWithStatus(patientsStatus);
    }
 
 

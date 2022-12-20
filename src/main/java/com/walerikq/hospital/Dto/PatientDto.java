@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 
@@ -21,7 +23,8 @@ public class PatientDto {
     private String patronymic;
 
     @NotBlank
-    private Byte age;
+    @Max(130)@Min(0)
+    private Integer age;
     private String diseases;
     private PatientsStatus status;
 
