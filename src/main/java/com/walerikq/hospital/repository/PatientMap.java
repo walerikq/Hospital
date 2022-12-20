@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -40,13 +41,15 @@ public class PatientMap {
         return patientMap.get(id);
     }
 
-    public Map<Integer, Patient> getPatientsWithStatus(@NotNull PatientsStatus patientsStatus) {
-        Map<Integer,Patient> patientsListWithStatus = new HashMap<>();
-        for (int i = 0; i < patientMap.size(); i++) {
-            if (patientMap.get(i).getStatus() == patientsStatus) {
-                patientsListWithStatus.put(i, patientMap.get(i));
-            }
-        }
+    public List<Patient> getPatientsWithStatus(@NotNull PatientsStatus patientsStatus) {
+        List<Patient> patientsListWithStatus = patientMap.values().stream()
+                .filter(x -> (patientMap.get(x).getStatus()== patientsStatus))
+                .collect(Collectors.toList());
+//        for (int i = 0; i < patientMap.size(); i++) {
+//            if (patientMap.get(i).getStatus() == patientsStatus) {
+//                patientsListWithStatus.put(i, patientMap.get(i));
+//            }
+//        }
         return patientsListWithStatus;
     }
 

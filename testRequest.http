@@ -3,7 +3,7 @@ GET http://localhost:8080/hospital/get-patient-from-id?id=0
 ###
 GET http://localhost:8080/hospital/get-all-patient
 
-### NPE потому что лист в репозитории не создан. Явно объяви его и этот метод должен норм работать
+###
 POST http://localhost:8080/hospital/create-new-patient
 Accept: application/json
 Content-Type: application/json
@@ -39,7 +39,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 4,
   "name": "Sergey",
   "surname": "Pupkin",
   "patronymic": "Torreto",

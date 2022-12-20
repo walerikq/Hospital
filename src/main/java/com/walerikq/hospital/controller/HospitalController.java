@@ -7,6 +7,7 @@ import com.walerikq.hospital.service.PatientsStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class HospitalController {
 
 
     @GetMapping("/get-all-patient")
-    public Map<Integer, Patient> getAllPerson(){
+    public List<Patient> getAllPatients(){
         return patientService.getAllPatients();
     }
 
@@ -32,7 +33,7 @@ public class HospitalController {
     }
 
     @GetMapping("/get-patients-with-status")
-    public Map<Integer, Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
+    public List<Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
         return patientService.getPatientsWithStatus(patientsStatus);
     }
 

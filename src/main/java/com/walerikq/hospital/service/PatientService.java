@@ -6,7 +6,9 @@ import com.walerikq.hospital.repository.PatientMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -18,8 +20,8 @@ public class PatientService {
         return patientMap.getPatientById(id);
     }
 
-    public Map<Integer, Patient> getAllPatients() {
-        return patientMap.getAllPatients();
+    public List<Patient> getAllPatients() {
+        return patientMap.getAllPatients().values().stream().toList();
     }
 
     /**
@@ -76,7 +78,7 @@ public class PatientService {
      * @param patientsStatus
      * @return
      */
-   public Map<Integer, Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
+   public List<Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
         return patientMap.getPatientsWithStatus(patientsStatus);
    }
 
