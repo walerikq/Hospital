@@ -21,7 +21,7 @@ public class PatientService {
     }
 
     public List<Patient> getAllPatients() {
-        return patientMap.getAllPatients().values().stream().toList();
+        return patientMap.getAllPatients();
     }
 
     /**
