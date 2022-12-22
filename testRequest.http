@@ -1,0 +1,49 @@
+GET http://localhost:8080/hospital/get-patient-from-id?id=0
+
+###
+GET http://localhost:8080/hospital/get-all-patient
+
+###
+POST http://localhost:8080/hospital/create-new-patient
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Sergey",
+  "surname": "Pupkin",
+  "patronymic": "Torvetto",
+  "age": 65,
+  "diseases": "chills",
+  "status": "REGISTRATION"
+}
+###
+GET http://localhost:8080/hospital/get-patients-with-status
+
+###
+PUT http://localhost:8080/hospital/put-info
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Lollster",
+  "surname": "lolkin",
+  "patronymic": "Torreto",
+  "age": 35,
+  "status": "REGISTRATION"
+}
+
+###
+DELETE http://localhost:8080/hospital/delete-person
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Sergey",
+  "surname": "Pupkin",
+  "patronymic": "Torreto",
+  "age": 65,
+  "diseases": "chills",
+  "status": "REGISTRATION"
+}
