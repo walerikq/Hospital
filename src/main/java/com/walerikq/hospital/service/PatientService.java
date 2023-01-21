@@ -16,6 +16,7 @@ public class PatientService {
 
     private final PatientMap patientMap;
 
+
     public Patient getPatientById(int id){
         return patientMap.getPatientById(id);
     }
