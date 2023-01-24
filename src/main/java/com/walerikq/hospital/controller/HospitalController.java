@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
@@ -23,8 +24,8 @@ public class HospitalController {
     }
 
     @GetMapping("/get-patient-from-id")
-    public Patient getPatientById(int id){
-        return patientService.getPatientById(id);
+    public Patient getPatientById(UUID uuid){
+        return patientService.getPatientById(uuid);
     }
 
     @PostMapping("/create-new-patient")
@@ -44,6 +45,6 @@ public class HospitalController {
 
     @DeleteMapping("/delete-person")
     public void deletePersonOnList(@RequestBody PatientDto patientDto){
-        patientService.deletingPatientById(patientDto.getId());
+        patientService.deletingPatientById(patientDto.getUuid());
     }
 }

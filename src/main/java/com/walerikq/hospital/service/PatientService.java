@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -17,8 +18,8 @@ public class PatientService {
     private final PatientMap patientMap;
 
 
-    public Patient getPatientById(int id){
-        return patientMap.getPatientById(id);
+    public Patient getPatientById(UUID uuid){
+        return patientMap.getPatientById(uuid);
     }
 
     public List<Patient> getAllPatients() {
@@ -46,7 +47,7 @@ public class PatientService {
 
 
     public void changingPatientData(PatientDto patientDto){
-        Patient patient = patientMap.getPatientById(patientDto.getId());
+        Patient patient = patientMap.getPatientById(patientDto.getUuid());
         if (patient.getName() != null){
             patient.setName(patientDto.getName());
         }
@@ -70,8 +71,8 @@ public class PatientService {
 
     }
 
-    public void deletingPatientById(int id){
-        patientMap.deletingPatientById(id);
+    public void deletingPatientById(UUID uuid){
+        patientMap.deletingPatientById(uuid);
     }
 
     /**

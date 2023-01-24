@@ -8,13 +8,14 @@ import lombok.Data;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Data
 @Builder
 
 public class Patient {
-    private Integer id;
+    private UUID uuid;
     private String name;
     private String surname;
     private String patronymic;

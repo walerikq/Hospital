@@ -2,6 +2,5 @@ select patient.surname || ' ' || patient.name || ' ' || patient.patronymic  as f
        patient.age,
        patient.status,
        patient.diseases
-  from hospital.patient
- where p.id = :id;
-
+from hospital.patient
+where p.status = :status;

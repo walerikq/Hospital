@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 
 @Data
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 public class PatientDto {
 
-    private Integer id;
+    private UUID uuid;
     @NotNull
     private String name;
     @NotNull
