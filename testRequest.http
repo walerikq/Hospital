@@ -1,4 +1,4 @@
-GET http://localhost:8080/hospital/get-patient-from-id?id=c30d22e4-3c91-4717-9be2-b0f258f03b7b
+GET http://localhost:8080/hospital/get-patient-from-id?uuid=42b74722-7202-4d46-a3c4-fefddcd843bd
 
 ###
 GET http://localhost:8080/hospital/get-all-patient
@@ -17,7 +17,7 @@ Content-Type: application/json
   "status": "REGISTRATION"
 }
 ###
-GET http://localhost:8080/hospital/get-patients-with-status
+GET http://localhost:8080/hospital/get-patients-with-status?patientsStatus=REGISTRATION
 
 ###
 PUT http://localhost:8080/hospital/put-info
@@ -25,11 +25,12 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": 3,
+  "uuid": "42b74722-7202-4d46-a3c4-fefddcd843bd",
   "name": "Lollster",
   "surname": "lolkin",
   "patronymic": "Torreto",
   "age": 35,
+  "diseases": "REGISTRATIONREGISTRATIONREGISTRATIONREGISTRATION",
   "status": "REGISTRATION"
 }
 
@@ -39,7 +40,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": 4,
+  "uuid": "d461a673-7c14-4786-b8dd-b0fdc0733fa4",
   "name": "Sergey",
   "surname": "Pupkin",
   "patronymic": "Torreto",

@@ -8,4 +8,4 @@ spring:
     init:
       schema-locations: classpath:/sql/createTable.sql
       encoding: UTF-8
-      mode: embedded
+      mode: always

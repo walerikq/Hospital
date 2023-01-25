@@ -1,4 +1,7 @@
-select patient.surname || ' ' || patient.name || ' ' || patient.patronymic  as fullname,
+select patient.id,
+       patient.patronymic,
+       patient.surname,
+       patient.name,
        patient.age,
        patient.status,
        patient.diseases

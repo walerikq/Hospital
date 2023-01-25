@@ -2,28 +2,26 @@ package com.walerikq.hospital.service;
 
 import com.walerikq.hospital.Dto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
-import com.walerikq.hospital.repository.PatientMap;
+import com.walerikq.hospital.repository.PatientRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class PatientService {
 
-    private final PatientMap patientMap;
+    private final PatientRepo patientRepo;
 
 
     public Patient getPatientById(UUID uuid){
-        return patientMap.getPatientById(uuid);
+        return patientRepo.getPatientById(uuid);
     }
 
     public List<Patient> getAllPatients() {
-        return patientMap.getAllPatients();
+        return patientRepo.getAllPatients();
     }
 
     /**
@@ -32,7 +30,7 @@ public class PatientService {
      */
     public void createPatient(PatientDto personDto) {
         Patient patient = new Patient(
-                patientMap.setCounter(),
+                patientRepo.setCounter(),
                 personDto.getName(),
                 personDto.getSurname(),
                 personDto.getPatronymic(),
@@ -40,14 +38,14 @@ public class PatientService {
                 personDto.getDiseases(),
                 personDto.getStatus()
         );
-        patientMap.addPatientInList(patient);
+        patientRepo.addPatientInList(patient);
 
 
     }
 
 
     public void changingPatientData(PatientDto patientDto){
-        Patient patient = patientMap.getPatientById(patientDto.getUuid());
+        Patient patient = patientRepo.getPatientById(patientDto.getUuid());
         if (patient.getName() != null){
             patient.setName(patientDto.getName());
         }
@@ -67,12 +65,12 @@ public class PatientService {
             patient.setStatus(patientDto.getStatus());
         }
 
-        patientMap.savePatient(patient);
+        patientRepo.savePatient(patient);
 
     }
 //
     public void deletingPatientById(UUID uuid){
-        patientMap.deletingPatientById(uuid);
+        patientRepo.deletingPatientById(uuid);
     }
 
     /**
@@ -80,8 +78,8 @@ public class PatientService {
      * @param patientsStatus
      * @return
      */
-   public List<Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
-        return patientMap.getPatientsWithStatus(patientsStatus);
+   public List<Patient> getPatientsWithStatus(String patientsStatus){
+        return patientRepo.getPatientsWithStatus(patientsStatus);
    }
 
 

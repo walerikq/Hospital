@@ -1,6 +1,5 @@
 package com.walerikq.hospital.entity;
 
-import com.walerikq.hospital.service.PatientsStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +23,5 @@ public class Patient {
     @Max(130)@Min(0)
     private Integer age;
     private String diseases;
-    private PatientsStatus status;
+    private String status;
 }

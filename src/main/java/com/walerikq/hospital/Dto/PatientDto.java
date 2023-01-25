@@ -1,6 +1,5 @@
 package com.walerikq.hospital.Dto;
 
-import com.walerikq.hospital.service.PatientsStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
@@ -27,6 +26,6 @@ public class PatientDto {
     @Max(130)@Min(0)
     private Integer age;
     private String diseases;
-    private PatientsStatus status;
+    private String status;
 
 }

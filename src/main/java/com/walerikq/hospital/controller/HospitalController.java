@@ -3,13 +3,10 @@ package com.walerikq.hospital.controller;
 import com.walerikq.hospital.Dto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
 import com.walerikq.hospital.service.PatientService;
-import com.walerikq.hospital.service.PatientsStatus;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 //@AllArgsConstructor
@@ -17,7 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
-    private PatientService patientService;
+    private final PatientService patientService;
 
 
     @GetMapping("/get-all-patient")
@@ -26,7 +23,7 @@ public class HospitalController {
     }
 
     @GetMapping("/get-patient-from-id")
-    public Patient getPatientById(UUID uuid){
+    public Patient getPatientById(@RequestParam UUID uuid){
         return patientService.getPatientById(uuid);
     }
 
@@ -36,7 +33,7 @@ public class HospitalController {
     }
 
     @GetMapping("/get-patients-with-status")
-    public List<Patient> getPatientsWithStatus(PatientsStatus patientsStatus){
+    public List<Patient> getPatientsWithStatus(String patientsStatus){
         return patientService.getPatientsWithStatus(patientsStatus);
     }
 
