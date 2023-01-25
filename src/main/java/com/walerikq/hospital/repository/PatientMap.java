@@ -90,13 +90,27 @@ public class PatientMap {
      *
      * @param uuid
      */
-//    public void deletingPatientById(UUID uuid) {
-//            patientMap.remove(uuid);
-//    }
+    public void deletingPatientById(UUID uuid) {
+
+        String request = ScriptReader.read("deletePatient.sql");
+        namedParameterJdbcTemplate.update(
+                request,
+                Map.of("id",uuid));
+    }
 //
-//    public void savePatient(Patient patient){
-//        patientMap.put(patient.getUuid(),patient);
-//    }
+    public void savePatient(Patient patient){
+        String request = ScriptReader.read("sql/updatingPatientInformation.sql");
+        namedParameterJdbcTemplate.update(
+                request,
+                Map.of( "id", patient.getUuid(),
+                        "name", patient.getName(),
+                        "surname", patient.getSurname(),
+                        "patronymic", patient.getPatronymic(),
+                        "age", patient.getAge(),
+                        "diseases", patient.getDiseases(),
+                        "status", patient.getStatus()));
+
+    }
 //
     public void addPatientInList(Patient patient) {
         String request = ScriptReader.read("sql/createNewPatient.sql");

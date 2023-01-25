@@ -40,13 +40,13 @@ public class HospitalController {
         return patientService.getPatientsWithStatus(patientsStatus);
     }
 
-//    @PutMapping("/put-info")
-//    public void changeInformation(@RequestBody PatientDto patientDto){
-//        patientService.changingPatientData(patientDto);
-//    }
+    @PutMapping("/put-info")
+    public void changeInformation(@RequestBody PatientDto patientDto){
+        patientService.changingPatientData(patientDto);
+    }
 
-//    @DeleteMapping("/delete-person")
-//    public void deletePersonOnList(@RequestBody PatientDto patientDto){
-//        patientService.deletingPatientById(patientDto.getUuid());
-//    }
+    @DeleteMapping("/delete-person")
+    public void deletePersonOnList(@RequestBody PatientDto patientDto){
+        patientService.deletingPatientById(patientDto.getUuid());
+    }
 }

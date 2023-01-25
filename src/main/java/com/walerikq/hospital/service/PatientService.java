@@ -44,36 +44,36 @@ public class PatientService {
 
 
     }
+
+
+    public void changingPatientData(PatientDto patientDto){
+        Patient patient = patientMap.getPatientById(patientDto.getUuid());
+        if (patient.getName() != null){
+            patient.setName(patientDto.getName());
+        }
+        if (patient.getSurname() != null){
+            patient.setSurname(patientDto.getSurname());
+        }
+        if (patient.getPatronymic() != null){
+            patient.setPatronymic(patientDto.getPatronymic());
+        }
+        if (patient.getAge() > 0){
+            patient.setAge(patientDto.getAge());
+        }
+        if (patient.getDiseases() != null){
+            patient.setDiseases(patientDto.getDiseases());
+        }
+        if (patient.getStatus() != null){
+            patient.setStatus(patientDto.getStatus());
+        }
+
+        patientMap.savePatient(patient);
+
+    }
 //
-//
-//    public void changingPatientData(PatientDto patientDto){
-//        Patient patient = patientMap.getPatientById(patientDto.getUuid());
-//        if (patient.getName() != null){
-//            patient.setName(patientDto.getName());
-//        }
-//        if (patient.getSurname() != null){
-//            patient.setSurname(patientDto.getSurname());
-//        }
-//        if (patient.getPatronymic() != null){
-//            patient.setPatronymic(patientDto.getPatronymic());
-//        }
-//        if (patient.getAge() > 0){
-//            patient.setAge(patientDto.getAge());
-//        }
-//        if (patient.getDiseases() != null){
-//            patient.setDiseases(patientDto.getDiseases());
-//        }
-//        if (patient.getStatus() != null){
-//            patient.setStatus(patientDto.getStatus());
-//        }
-//
-//        patientMap.savePatient(patient);
-//
-//    }
-//
-//    public void deletingPatientById(UUID uuid){
-//        patientMap.deletingPatientById(uuid);
-//    }
+    public void deletingPatientById(UUID uuid){
+        patientMap.deletingPatientById(uuid);
+    }
 
     /**
      * Получение пациентов с определённым статусом
