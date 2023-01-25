@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class PatientMap {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private Map<UUID,Patient> patientMap = new HashMap<>();
+//    private Map<UUID,Patient> patientMap = new HashMap<>();
 //    private int  idPatients = 0;
 
     /**
@@ -36,10 +35,10 @@ public class PatientMap {
      * @return
      */
     public Patient getPatientById(UUID uuid) {
-        String request = ScriptReader.read("getPatientByID.sql");
+        String request = ScriptReader.read("sql/getPatientByID.sql");
         return (Patient) namedParameterJdbcTemplate.query(
                 request,
-                Map.of("uuid",uuid),
+                Map.of("id",uuid),
                 (rs, rowNum) -> Patient.builder()
                         .patronymic(rs.getString("patronymic"))
                         .name(rs.getString("name"))
@@ -52,7 +51,7 @@ public class PatientMap {
 
     public List<Patient> getPatientsWithStatus(@NotNull PatientsStatus patientsStatus) {
 
-       String request = ScriptReader.read("getPatientsByStatus.sql");
+       String request = ScriptReader.read("sql/getPatientsByStatus.sql");
         return namedParameterJdbcTemplate.query(
                 request,
                 (rs, rowNum) -> Patient.builder()
@@ -71,16 +70,17 @@ public class PatientMap {
      * @return List
      */
     public List<Patient> getAllPatients(){
-        return namedParameterJdbcTemplate.query("select * from hospital.patient",
+        String request = ScriptReader.read("sql/getAllPatients.sql");
+        return namedParameterJdbcTemplate.query(request,
                 (rs, rowNum) ->
                         Patient.builder()
-                                .uuid(UUID.fromString(rs.getString("uuid")))
-                                .patronymic(rs.getString("patronymic"))
-                                .name(rs.getString("name"))
-                                .surname(rs.getString("surname"))
-                                .age(rs.getInt("age"))
-                                .diseases(rs.getString("diseases"))
-                                .status(PatientsStatus.valueOf(rs.getString("status")))
+                                .uuid(UUID.fromString("uuid"))
+                                .patronymic("patronymic")
+                                .name("name")
+                                .surname("surname")
+                                .age(Integer.valueOf("age"))
+                                .diseases("diseases")
+                                .status(PatientsStatus.valueOf("status"))
                                 .build());
 
     }
@@ -90,16 +90,25 @@ public class PatientMap {
      *
      * @param uuid
      */
-    public void deletingPatientById(UUID uuid) {
-            patientMap.remove(uuid);
-    }
-
-    public void savePatient(Patient patient){
-        patientMap.put(patient.getUuid(),patient);
-    }
-
+//    public void deletingPatientById(UUID uuid) {
+//            patientMap.remove(uuid);
+//    }
+//
+//    public void savePatient(Patient patient){
+//        patientMap.put(patient.getUuid(),patient);
+//    }
+//
     public void addPatientInList(Patient patient) {
-        patientMap.put(patient.getUuid(), patient);
+        String request = ScriptReader.read("sql/createNewPatient.sql");
+        namedParameterJdbcTemplate.update(
+                request,
+                Map.of( "id", patient.getUuid(),
+                        "name", patient.getName(),
+                        "surname", patient.getSurname(),
+                        "patronymic", patient.getPatronymic(),
+                        "age", patient.getAge(),
+                        "diseases", patient.getDiseases(),
+                        "status", patient.getStatus()));
     }
 
 

@@ -8,7 +8,7 @@ create table if not exists hospital.patient
     patronymic character(30),
     age integer check(age >= 0),
     diseases character(300),
-    status character(30),
+    status character(30)
     );
 
 insert into hospital.patient(

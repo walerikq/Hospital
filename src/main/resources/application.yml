@@ -6,6 +6,6 @@ spring:
     driver-class-name: org.postgresql.Driver
   sql:
     init:
-      schema-locations: classpath:/createTable.sql
+      schema-locations: classpath:/sql/createTable.sql
       encoding: UTF-8
-      mode: always
+      mode: embedded

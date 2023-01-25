@@ -5,13 +5,15 @@ import com.walerikq.hospital.entity.Patient;
 import com.walerikq.hospital.service.PatientService;
 import com.walerikq.hospital.service.PatientsStatus;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
@@ -38,13 +40,13 @@ public class HospitalController {
         return patientService.getPatientsWithStatus(patientsStatus);
     }
 
-    @PutMapping("/put-info")
-    public void changeInformation(@RequestBody PatientDto patientDto){
-        patientService.changingPatientData(patientDto);
-    }
+//    @PutMapping("/put-info")
+//    public void changeInformation(@RequestBody PatientDto patientDto){
+//        patientService.changingPatientData(patientDto);
+//    }
 
-    @DeleteMapping("/delete-person")
-    public void deletePersonOnList(@RequestBody PatientDto patientDto){
-        patientService.deletingPatientById(patientDto.getUuid());
-    }
+//    @DeleteMapping("/delete-person")
+//    public void deletePersonOnList(@RequestBody PatientDto patientDto){
+//        patientService.deletingPatientById(patientDto.getUuid());
+//    }
 }

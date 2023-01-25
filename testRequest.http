@@ -1,4 +1,4 @@
-GET http://localhost:8080/hospital/get-patient-from-id?id=0
+GET http://localhost:8080/hospital/get-patient-from-id?id=c30d22e4-3c91-4717-9be2-b0f258f03b7b
 
 ###
 GET http://localhost:8080/hospital/get-all-patient
