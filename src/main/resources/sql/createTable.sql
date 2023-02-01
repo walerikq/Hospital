@@ -14,10 +14,10 @@ create table if not exists hospital.patient
 insert into hospital.patient(
     id,name,patronymic,surname,age,diseases,status)
 values
-    (gen_random_uuid(),'Valera','Lolikovich','Pupkin',22,'ochen silno bolen','APPOINTMENT'),
-    (gen_random_uuid(),'Valera','Popikovich','Lulkin',25,'ne silno bolen','APPOINTMENT'),
-    (gen_random_uuid(),'Migeraera','Klokoovich','Zubkina',22,'pochti umer','APPOINTMENT'),
-    (gen_random_uuid(),'Walera','Lolikovi4','Lupkin',22,'ochen silno bolen','APPOINTMENT');
+    (gen_random_uuid(),'Алексей','Булатов','Pupkin',22,'ochen silno bolen','APPOINTMENT'),
+    (gen_random_uuid(),'Инокентий','Филатов','Аркадьевич',25,'ne silno bolen','APPOINTMENT'),
+    (gen_random_uuid(),'Авраам','Карпатов','Сергеевич',22,'pochti umer','APPOINTMENT'),
+    (gen_random_uuid(),'Людмила','Скорозубкина','Алексеевна',22,'ochen silno bolen','APPOINTMENT');
 
 
 alter table hospital.patient

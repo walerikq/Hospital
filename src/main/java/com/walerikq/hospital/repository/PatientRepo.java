@@ -18,12 +18,6 @@ public class PatientRepo {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    /**
-     * @return new id patients
-     */
-    public UUID setCounter() {
-        return UUID.randomUUID();
-    }
 
     /**
      * Возвращает одного пациента из общего списка больных по ID
@@ -34,14 +28,17 @@ public class PatientRepo {
     public Patient getPatientById(UUID uuid) {
         String request = ScriptReader.read("sql/getPatientByID.sql");
         return namedParameterJdbcTemplate.query(
-                request,
-                Map.of("id", uuid),
-                (rs, rowNum) -> buildPatitenFromRs(rs)
-        ).stream().findFirst().orElse(null);
+                        request,
+                        Map.of("id", uuid),
+                        (rs, rowNum) -> buildPatitenFromRs(rs)
+                ).stream()
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * Метод возвращающий пациентов с определённым статусом
+     *
      * @param patientsStatus
      * @return
      */
@@ -74,18 +71,20 @@ public class PatientRepo {
         String request = ScriptReader.read("sql/deletePatient.sql");
         namedParameterJdbcTemplate.update(
                 request,
-                Map.of("id", uuid));
+                Map.of("id", uuid)
+        );
     }
 
     /**
      * Сохранение пациента
+     *
      * @param patient
      */
     public void savePatient(Patient patient) {
         String request = ScriptReader.read("sql/updatingPatientInformation.sql");
         namedParameterJdbcTemplate.update(
                 request,
-                patientBuilder(patient)
+                buildParamMapFromPatient(patient)
         );
 
     }
@@ -95,12 +94,12 @@ public class PatientRepo {
         String request = ScriptReader.read("sql/createNewPatient.sql");
         namedParameterJdbcTemplate.update(
                 request,
-                patientBuilder(patient)
+                buildParamMapFromPatient(patient)
         );
 
     }
 
-    private Map<String, ?> patientBuilder(Patient patient) {
+    private Map<String, ?> buildParamMapFromPatient(Patient patient) {
         return Map.of(
                 "id", patient.getUuid(),
                 "name", patient.getName(),

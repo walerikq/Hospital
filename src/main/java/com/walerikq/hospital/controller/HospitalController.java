@@ -43,7 +43,7 @@ public class HospitalController {
     }
 
     @DeleteMapping("/delete-person")
-    public void deletePersonOnList(@RequestBody PatientDto patientDto){
+    public void deletePerson(@RequestBody PatientDto patientDto){
         patientService.deletingPatientById(patientDto.getUuid());
     }
 }

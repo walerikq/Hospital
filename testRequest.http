@@ -10,8 +10,8 @@ Content-Type: application/json
 
 {
   "name": "Sergey",
-  "surname": "Pupkin",
-  "patronymic": "Torvetto",
+  "surname": "Kasparov",
+  "patronymic": "Andrewevich",
   "age": 65,
   "diseases": "chills",
   "status": "REGISTRATION"
@@ -26,9 +26,9 @@ Content-Type: application/json
 
 {
   "uuid": "42b74722-7202-4d46-a3c4-fefddcd843bd",
-  "name": "Lollster",
-  "surname": "lolkin",
-  "patronymic": "Torreto",
+  "name": "Анжелика",
+  "surname": "Домогарова",
+  "patronymic": "Петровна",
   "age": 35,
   "diseases": "REGISTRATIONREGISTRATIONREGISTRATIONREGISTRATION",
   "status": "REGISTRATION"
@@ -40,11 +40,5 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "uuid": "d461a673-7c14-4786-b8dd-b0fdc0733fa4",
-  "name": "Sergey",
-  "surname": "Pupkin",
-  "patronymic": "Torreto",
-  "age": 65,
-  "diseases": "chills",
-  "status": "REGISTRATION"
+  "uuid": "d461a673-7c14-4786-b8dd-b0fdc0733fa4"
 }

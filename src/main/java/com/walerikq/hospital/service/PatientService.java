@@ -30,7 +30,7 @@ public class PatientService {
      */
     public void createPatient(PatientDto personDto) {
         Patient patient = new Patient(
-                patientRepo.setCounter(),
+                UUID.randomUUID(),
                 personDto.getName(),
                 personDto.getSurname(),
                 personDto.getPatronymic(),
