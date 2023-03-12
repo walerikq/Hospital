@@ -1,21 +1,24 @@
-package com.walerikq.hospital.entity;
+package com.walerikq.hospital.Dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
-@AllArgsConstructor
-@Data
-@Builder
 
-public class Patient {
+@Data
+@AllArgsConstructor
+
+public class PatientDto {
+
     private UUID uuid;
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
     private String patronymic;
 
@@ -24,4 +27,5 @@ public class Patient {
     private Integer age;
     private String diseases;
     private String status;
+
 }

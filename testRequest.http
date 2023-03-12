@@ -1,0 +1,44 @@
+GET http://localhost:8080/hospital/get-patient-from-id?uuid=42b74722-7202-4d46-a3c4-fefddcd843bd
+
+###
+GET http://localhost:8080/hospital/get-all-patient
+
+###
+POST http://localhost:8080/hospital/create-new-patient
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Sergey",
+  "surname": "Kasparov",
+  "patronymic": "Andrewevich",
+  "age": 65,
+  "diseases": "chills",
+  "status": "REGISTRATION"
+}
+###
+GET http://localhost:8080/hospital/get-patients-with-status?patientsStatus=REGISTRATION
+
+###
+PUT http://localhost:8080/hospital/put-info
+Accept: application/json
+Content-Type: application/json
+
+{
+  "uuid": "42b74722-7202-4d46-a3c4-fefddcd843bd",
+  "name": "Анжелика",
+  "surname": "Домогарова",
+  "patronymic": "Петровна",
+  "age": 35,
+  "diseases": "REGISTRATIONREGISTRATIONREGISTRATIONREGISTRATION",
+  "status": "REGISTRATION"
+}
+
+###
+DELETE http://localhost:8080/hospital/delete-person
+Accept: application/json
+Content-Type: application/json
+
+{
+  "uuid": "d461a673-7c14-4786-b8dd-b0fdc0733fa4"
+}

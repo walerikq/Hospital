@@ -1,34 +1,49 @@
 package com.walerikq.hospital.controller;
 
-import com.walerikq.hospital.PersonDto.PersonDto;
+import com.walerikq.hospital.Dto.PatientDto;
 import com.walerikq.hospital.entity.Patient;
-import com.walerikq.hospital.service.PersonService;
+import com.walerikq.hospital.service.PatientService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.awt.*;
 
+import java.util.List;
+import java.util.UUID;
+
+//@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
-    private List<Patient> diseases;
+    private final PatientService patientService;
 
-    @GetMapping("/get-person")
-    public List<Patient> getAllPerson(){
-        return diseases;
+
+    @GetMapping("/get-all-patient")
+    public List<Patient> getAllPatients(){
+        return patientService.getAllPatients();
     }
 
-    @PostMapping("/post-info")
-    public void informationTransfer(){
+    @GetMapping("/get-patient-from-id")
+    public Patient getPatientById(@RequestParam UUID uuid){
+        return patientService.getPatientById(uuid);
+    }
 
+    @PostMapping("/create-new-patient")
+    public void createNewPatient(@RequestBody PatientDto personDto){
+        patientService.createPatient(personDto);
+    }
+
+    @GetMapping("/get-patients-with-status")
+    public List<Patient> getPatientsWithStatus(String patientsStatus){
+        return patientService.getPatientsWithStatus(patientsStatus);
     }
 
     @PutMapping("/put-info")
-    public void changeInformation(List<Patient> person){
-
+    public void changeInformation(@RequestBody PatientDto patientDto){
+        patientService.changingPatientData(patientDto);
     }
 
     @DeleteMapping("/delete-person")
-    public void deletePersonOnList(java.util.List<PersonDto> person){
-
+    public void deletePerson(@RequestBody PatientDto patientDto){
+        patientService.deletingPatientById(patientDto.getUuid());
     }
 }
